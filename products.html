@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            height: 100%;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Transparent Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0);
+            padding: 10px 20px;
+            width: 100%;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Logo */
+        .logo img {
+            height: 30px;
+        }
+
+        /* Navigation */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 0 auto;
+        }
+        .nav-links li {
+            display: inline;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .nav-links a:hover {
+            color: #ffcc00;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 75px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .hamburger div {
+            width: 30px;
+            height: 4px;
+            background-color: white;
+            border-radius: 10px;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                text-align: center;
+                background-color: rgba(0, 0, 0, 0.8);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                padding: 20px 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links li {
+                margin: 10px 0;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Full-Screen Background Image */
+        main {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+            width: 100%;
+            padding-top: 50px;
+            min-height: 100vh; /* Ensures full screen height */
+            background-image: url('1.jpg'); /* Replace with your image */
+            background-size: cover; /* Makes the image cover the entire viewport */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Ensures it doesn't repeat */
+        }
+
+        /* Product Slider Styles */
+        .product-slider {
+            display: flex;
+            overflow: hidden;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 40px auto;
+            position: relative;
+        }
+
+        .product-slider .product {
+            flex: 0 0 33.33%;
+            margin: 0 10px;
+            transition: transform 0.5s ease;
+        }
+
+        .product-slider img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #000000;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+            position: relative;
+            bottom: 0;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://i.postimg.cc/GhZtVrJ7/DALL-E-2025-03-01-07-49-48-A-logo-design-for-DLA-Rice-Producer-The-logo-should-feature-the-text.webp" alt="Your Company Logo">
+        </div>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="products.html">Our Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <button class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </button>
+    </header>
+
+    <!-- Product Slider Section -->
+    <main>
+        <h1 class="product-heading">Our Featured Products</h1>
+
+        <div class="product-slider" id="product-slider">
+            <!-- Product Slides -->
+            <div class="product">
+                <img src="https://i.postimg.cc/SNcM944S/converted-image-2.png" alt="Product 1">
+            </div>
+            <div class="product">
+                <img src="https://i.postimg.cc/SNcM944S/converted-image-2.png" alt="Product 2">
+            </div>
+            <div class="product">
+                <img src="https://i.postimg.cc/SNcM944S/converted-image-2.png" alt="Product 3">
+            </div>
+        </div>
+
+        <!-- Slider Navigation Buttons -->
+        <button class="slider-btn prev" id="prevBtn">&#10094;</button>
+        <button class="slider-btn next" id="nextBtn">&#10095;</button>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Your Company Name. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const productSlider = document.getElementById('product-slider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let currentIndex = 0;
+
+        const totalSlides = document.querySelectorAll('.product').length;
+
+        function moveSlider() {
+            const offset = -currentIndex * 100;
+            productSlider.style.transform = `translateX(${offset}%)`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex === 0) ? totalSlides - 1 : currentIndex - 1;
+            moveSlider();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
+            moveSlider();
+        });
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
